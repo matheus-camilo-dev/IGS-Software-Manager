@@ -1,0 +1,50 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="shortcut icon" href="{% static 'img/igs_logo.ico' %}" />
+    <title>Alterar funcionário - IGS Software Manager</title>
+    <style>
+        *{padding: 0px;margin: 0px;}
+        html, body {width: 100%; height: 100%;}
+        body{background-color: #3030FF;}
+        th{font-size: 20px;}
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="/dashboard/">
+        <img class="img-fluid img-thumbnail" style="float: left;width: 8%;border-radius: 20px;margin-left: 10px;" src="{% static 'img/igs_logo.png' %}"/>
+        <h1 style="float: left;margin-top: 1.5%;padding-left: 20px;">Painel de Controle</h1>
+    </a>
+    </nav>
+    <div class="container">
+        <hr>
+        <div class="row">
+            <div class="mt-4 col-3"></div>
+            <div class="card mt-4 col-6">
+                <div class="card-header">
+                    <h3>Alterar dados</h3>
+                </div>
+                <div class="card-body">
+                    <form action="/dashboard/update/{{ dados.id }}/", method="POST">
+                        <label>Nome: </label>
+                        <input class="form-control" name="name" type="text" placeholder="" required value="{{ dados.name }}"><br>
+                        <label>Email: </label>
+                        <input class="form-control" name="email" type="email" placeholder="" value="{{ dados.email }}" required><br>
+                        <label>Departamento: </label>
+                        <input class="form-control" name="department" type="text" placeholder="" value="{{ dados.department }}" required><br>
+                        <button style="font-size: 17px;" class="btn btn-success btn-block w-100" type="submit">Salvar</button>
+                    </form>
+                </div>
+            </div>
+            <div class="mt-4 col-3"></div>
+        </div>
+    </div>
+</body>
+</html>
