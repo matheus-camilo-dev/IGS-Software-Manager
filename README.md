@@ -1,13 +1,13 @@
 # IGS Software Manager
 <p style='text-align: center;margin-top: 0px;'>
-    <img src='./static/img/igs_logo.png' style='width: 60%;margin-top: 0px;'>
+    <img src='./static/img/igs_logo.png' style='width: 40%;margin-top: 0px;'>
 </p>
 
-- ## 🔧 Instalação com docker
+- ## 🔧 Instalação com docker(Recomendado)
 ### 1. Instale o Docker Desktop (for windows or for linux) que vem com o docker e o docker-compose.
 ### 2. Inicialize o docker
 ### 3. Abra o cmd como administrador na pasta raiz do projeto
-### 4. Execute o comando `docker-compose up --build`
+### 4. Execute o comando `docker-compose up`
 ### 5. Aguarde a criação da imagem
 ### 6. Pronto! Agora é só abrir a url `http://localhost:8000/` e usar o app Django
 &nbsp;

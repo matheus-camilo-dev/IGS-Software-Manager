@@ -18,7 +18,9 @@ def get_object(id):
     try:
         return Users.objects.get(pk=id)
     except Users.DoesNotExist:
-        raise NotFound()
+        # raise NotFound()
+        return None
+        # raise JsonResponse({'status': 0, 'message': 'Employee not found!'})
 
 class renderDashboard(APIView):
     @csrf_exempt    
@@ -54,14 +56,17 @@ class UpdateUser(APIView):
     @csrf_exempt
     def get(self, request, id):
         users = get_object(id)
-        serializer = UserSerializer(users)
-        return render(request, 'dashboard/update.html', {'dados' : serializer.data})
+        if(users != None):
+            serializer = UserSerializer(users)
+            return render(request, 'dashboard/update.html', {'dados' : serializer.data})
+        return HttpResponse(status=status.HTTP_404_NOT_FOUND)
 
     @csrf_exempt
     def post(self, request, id):
         users = get_object(id)
-        serializer = UserSerializer(users, data=request.data)
-        if serializer.is_valid():
-            serializer.save() 
-            return redirect("/dashboard/")
-        return HttpResponse("Ocorreu um problema: "+str(serializer.erros))
+        if(users != None):
+            serializer = UserSerializer(users, data=request.data)
+            if serializer.is_valid():
+                serializer.save() 
+                return redirect("/dashboard/")
+        return HttpResponse(status=status.HTTP_404_NOT_FOUND)

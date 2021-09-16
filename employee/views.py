@@ -19,7 +19,7 @@ class UsersList(APIView):
     def get(self, request):
         users = Users.objects.all()
         serializer = UserSerializer(users, many=True) 
-        return Response({'status': 1, 'message': 'Successfully generated employee list!', 'data': serializer.data})
+        return JsonResponse({'status': 1, 'message': 'Successfully generated employee list!', 'data': serializer.data})
 
 class Get_Delete_or_Update_User(APIView):
     def get_object(self, id):
@@ -36,7 +36,7 @@ class Get_Delete_or_Update_User(APIView):
         if len(serializer.data) > 0:
             data = dict(serializer.data[0])
             response = {"status": 1, "message": "Employee has been found!", "data": data}
-        return Response(response)
+        return JsonResponse(response)
 
     @csrf_exempt
     def put(self, request, id):
@@ -45,14 +45,14 @@ class Get_Delete_or_Update_User(APIView):
         if serializer.is_valid():
             serializer.save() 
             return Response({"status": 1, "message": "Employee has been updated successfully!", "data": serializer.data})
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     @csrf_exempt
     def delete(self, request, id):
         users = self.get_object(id)
         users.delete()
         # return Response(status=status.HTTP_204_NO_CONTENT)
-        return Response({'status': 1, 'message':"Employee has been deleted successfully!"})
+        return JsonResponse({'status': 1, 'message':"Employee has been deleted successfully!"})
 
 class AddUser(APIView):
     @csrf_exempt
