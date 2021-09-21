@@ -1,9 +1,8 @@
-from django.http import response
 from django.shortcuts import redirect, render
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from collections import OrderedDict
-from employee import serializers
+from config.configurations import *
 
 from rest_framework import status
 from rest_framework.exceptions import NotFound
@@ -30,12 +29,14 @@ class renderDashboard(APIView):
         dados = []
         for i in range(0, len(serializer.data)):
             dados.append(dict(serializer.data[i]))
-        return render(request, 'dashboard/dashboard.html', {"data" : dados})
+        if dados == []:
+            return render(request, 'dashboard/dashboard.html', {'data' : dados, **config_dict, 'msg' : "Não há registros! Adicione um novo para administrar!"})
+        return render(request, 'dashboard/dashboard.html', {'data' : dados, **config_dict})
 
 class createArea(APIView):
     @csrf_exempt
     def get(self, request):
-        return render(request, 'dashboard/new.html')
+        return render(request, 'dashboard/new.html', config_dict)
     
     @csrf_exempt
     def post(self, request):
@@ -43,7 +44,7 @@ class createArea(APIView):
         if serializer.is_valid():
             serializer.save()
             return redirect('/dashboard/')    
-        return render(request, 'dashboard/new.html')
+        return render(request, 'dashboard/new.html', config_dict)
 
 class DeleteUser(APIView):
     @csrf_exempt
@@ -58,7 +59,7 @@ class UpdateUser(APIView):
         users = get_object(id)
         if(users != None):
             serializer = UserSerializer(users)
-            return render(request, 'dashboard/update.html', {'dados' : serializer.data})
+            return render(request, 'dashboard/update.html', {'dados' : serializer.data, **config_dict})
         return HttpResponse(status=status.HTTP_404_NOT_FOUND)
 
     @csrf_exempt

@@ -1,4 +1,5 @@
-# IGS Software Manager
+# Sistema de Gerenciamento de Dados em Django
+## Desafio proposto pela empresa IGS usando a tecnologia Django, Django REST API, CRUD e Docker!
 <p style='text-align: center;margin-top: 0px;'>
     <img src='./static/img/igs_logo.png' style='width: 40%;margin-top: 0px;'>
 </p>
@@ -132,10 +133,10 @@ Content-Type: application/json
     "status": 1,
     "message": "Employee has been updated successfully!",
     "data": {
-        "id": 8,
-        "name": "Matheus Camilo Velanzuela",
-        "email": "matheuscamilo@gmail.com",
-        "department": "Python Pleno Developer"
+        "id": 6,
+        "name": "Joao Pedro Andrade",
+        "email": "joaopedro@gmail.com",
+        "department": "Java Developer"
     }
 }
 ```

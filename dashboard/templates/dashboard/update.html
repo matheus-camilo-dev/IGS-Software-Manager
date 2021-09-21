@@ -1,14 +1,14 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <link rel="shortcut icon" href="{% static 'img/igs_logo.ico' %}" />
-    <title>Alterar funcionário - IGS Software Manager</title>
+    <title>Alterar funcionário - {{ SITE_TITLE }}</title>
     <style>
         *{padding: 0px;margin: 0px;}
         html, body {width: 100%; height: 100%;}
@@ -19,9 +19,9 @@
 <body>
     <nav class="navbar navbar-light bg-light">
         <a class="navbar-brand" href="/">
-        <img class="img-fluid img-thumbnail" style="float: left;width: 8%;border-radius: 20px;margin-left: 10px;" src="{% static 'img/igs_logo.png' %}"/>
-        <h1 style="float: left;margin-top: 1.5%;padding-left: 20px;">Painel de Controle</h1>
-    </a>
+            <img class="img-fluid img-thumbnail" style="float: left;width: 13%;border-radius: 10px;margin-left: 10px;" src="{% static LOGO_DIR %}"/>
+            <h1 style="float: left;margin-top: 2%;padding-left: 20px;">{{ SITE_TITLE }}</h1>
+        </a>
     </nav>
     <div class="container">
         <hr>
